@@ -1,24 +1,39 @@
 {
-    "name": "elvenpath/yii2-eu-vatvalidator",
-    "description": "Yii2 validator for EU VAT numbers",
-    "keywords": ["yii2", "vat", "validator"],
-    "homepage": "https://github.com/elvenpath/yii2-eu-vatvalidator",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Vlad Jula-Nedelcu",
-            "email": "vlad.nedelcu@gmail.com",
-            "homepage": "http://mfq.ro/",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-       "php": ">=5.3.0",
-       "ext-soap": "*",
-       "yiisoft/yii2": "*"
-   },
-    "autoload": {
-        "psr-4": {"elvenpath\\yii2-eu-vatvalidator\\": ""}
+  "name": "elvenpath/yii2-eu-vatvalidator",
+  "description": "Yii2 validator for EU VAT numbers",
+  "keywords": [
+    "yii2",
+    "vat",
+    "validator"
+  ],
+  "homepage": "https://github.com/elvenpath/yii2-eu-vatvalidator",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vlad Jula-Nedelcu",
+      "email": "vlad.nedelcu@gmail.com",
+      "homepage": "http://mfq.ro/",
+      "role": "Developer"
     }
+  ],
+  "support": {
+    "issues": "https://github.com/elvenpath/yii2-eu-vatvalidator/issues",
+    "source": "https://github.com/elvenpath/yii2-eu-vatvalidator"
+  },
+  "require": {
+    "php": ">=5.3.0",
+    "ext-soap": "*",
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "elvenpath\\yii2-eu-vatvalidator\\": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
 }
