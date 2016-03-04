@@ -2,6 +2,10 @@ A Yii validator for EU VAT numbers
 
 # EU VAT validator for Yii2 #
 
+[![Latest Stable Version](https://poser.pugx.org/elvenpath/yii2-eu-vatvalidator/v/stable)](https://packagist.org/packages/elvenpath/yii2-eu-vatvalidator)
+[![Total Downloads](https://poser.pugx.org/elvenpath/yii2-eu-vatvalidator/downloads)](https://packagist.org/packages/elvenpath/yii2-eu-vatvalidator)
+[![License](https://poser.pugx.org/elvenpath/yii2-eu-vatvalidator/license)](https://packagist.org/packages/elvenpath/yii2-eu-vatvalidator)
+
 based on https://github.com/herdani/vat-validation
 
 ## About ##
