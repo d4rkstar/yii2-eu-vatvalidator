@@ -15,7 +15,7 @@ The
 
 The data is extracted from a European Commission webservice
 
-__It ONLY works for European countries__
+__It ONLY works for European Union countries__
 
 ## Requirements ##
 
