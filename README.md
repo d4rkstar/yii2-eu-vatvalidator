@@ -1,4 +1,4 @@
-A Yii validator for EU VAT numbers
+An Yii2 validator for EU VAT numbers
 
 # EU VAT validator for Yii2 #
 
