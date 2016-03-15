@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "elvenpath\\yii2-eu-vatvalidator\\": ""
+      "elvenpath\\yii2_eu_vatvalidator\\": ""
     }
   },
   "extra": {
