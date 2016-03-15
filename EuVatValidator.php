@@ -1,9 +1,10 @@
 <?php
 namespace elvenpath\yii2_eu_vatvalidator;
 
-use \SoapClient;
-use \Exception;
-use \yii\validators\Validator;
+use Exception;
+use SoapClient;
+use Yii;
+use yii\validators\Validator;
 
 /**
  * Class EuVatValidator
@@ -51,7 +52,8 @@ class EuVatValidator extends Validator
         /** @noinspection PhpUndefinedMethodInspection */
         $rs = $this->client->checkVat(['countryCode' => $this->country_code, 'vatNumber' => $model->$attribute]);
         if (!$rs->valid) {
-            $this->addError($model, $attribute, $this->message);
+            $this->addError($model, $attribute,
+                $this->message ? $this->message : Yii::t('yii', '{attribute} is invalid.'));
         } else {
             if ($this->populate_model) {
                 $this->model_name_attribute = $this->cleanUpString($rs->name);
