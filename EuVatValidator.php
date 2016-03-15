@@ -48,10 +48,6 @@ class EuVatValidator extends Validator
      */
     public function validateAttribute($model, $attribute)
     {
-        if (!in_array($model->$attribute, ['USA', 'Web'])) {
-            $this->addError($model, $attribute, 'The country must be either "USA" or "Web".');
-        }
-
         /** @noinspection PhpUndefinedMethodInspection */
         $rs = $this->client->checkVat(['countryCode' => $this->country_code, 'vatNumber' => $model->$attribute]);
         if (!$rs->valid) {
