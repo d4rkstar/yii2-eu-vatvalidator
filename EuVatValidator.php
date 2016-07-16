@@ -3,6 +3,8 @@ namespace elvenpath\yii2_eu_vatvalidator;
 
 use Exception;
 use SoapClient;
+use SoapFault;
+use stdClass;
 use Yii;
 use yii\validators\Validator;
 
@@ -15,7 +17,7 @@ class EuVatValidator extends Validator
 {
     /** @var string */
     public $wsdl_uri = "http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl";
-    /** @var string */
+    /** @var string 2 letter country code */
     public $country_code;
     /**
      * @var bool
@@ -39,7 +41,7 @@ class EuVatValidator extends Validator
             throw new Exception('The Soap library has to be installed and enabled');
         }
 
-        $this->client = new SoapClient($this->wsdl_uri, ['trace' => true]);
+        $this->client = new SoapClient($this->wsdl_uri, ['trace' => false]);
     }
 
     /**
@@ -49,15 +51,28 @@ class EuVatValidator extends Validator
      */
     public function validateAttribute($model, $attribute)
     {
-        /** @noinspection PhpUndefinedMethodInspection */
-        $rs = $this->client->checkVat(['countryCode' => $this->country_code, 'vatNumber' => $model->$attribute]);
-        if (!$rs->valid) {
+        try {
+            /** @var stdClass $rs */
+            /** @noinspection PhpUndefinedMethodInspection */
+            $rs = $this->client->checkVat([
+                'countryCode' => $this->country_code,
+                'vatNumber' => preg_replace('/^' . $this->country_code . '/', '', $model->$attribute)
+            ]);
+        } catch (SoapFault $e) {
             $this->addError($model, $attribute,
-                $this->message ? $this->message : Yii::t('yii', '{attribute} is invalid.'));
-        } else {
-            if ($this->populate_model) {
-                $this->model_name_attribute = $this->cleanUpString($rs->name);
-                $this->model_address_attribute = $this->cleanUpString($rs->address);
+                $this->message ? $this->message : Yii::t('yii',
+                    'Cannot check {attribute} at this point. Please try again later.'));
+        }
+        if (isset($rs)) {
+
+            if (!$rs->valid) {
+                $this->addError($model, $attribute,
+                    $this->message ? $this->message : Yii::t('yii', '{attribute} is invalid.'));
+            } else {
+                if ($this->populate_model) {
+                    $this->model_name_attribute = $this->cleanUpString($rs->name);
+                    $this->model_address_attribute = $this->cleanUpString($rs->address);
+                }
             }
         }
     }
