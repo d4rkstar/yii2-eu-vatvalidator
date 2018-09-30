@@ -70,8 +70,8 @@ class EuVatValidator extends Validator
                     $this->message ? $this->message : Yii::t('yii', '{attribute} is invalid.'));
             } else {
                 if ($this->populate_model) {
-                    $this->model_name_attribute = $this->cleanUpString($rs->name);
-                    $this->model_address_attribute = $this->cleanUpString($rs->address);
+                     $model->{$this->model_name_attribute} = $this->cleanUpString($rs->name);
+                     $model->{$this->model_address_attribute} = $this->cleanUpString($rs->address);
                 }
             }
         }
